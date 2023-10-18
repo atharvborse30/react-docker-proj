@@ -1,0 +1,19 @@
+FROM node:18.17-slim AS development
+
+#set the working directory inside the container
+WORKDIR /react-docker-proj
+
+# copy package.json and package-lock.json to the container
+COPY package.json .
+
+# install dependencies
+RUN npm install
+
+# copying all the files in our project
+COPY . .
+
+# Expose port 5713 for development server
+EXPOSE 5173
+
+# start the react development server with hot-reloading
+CMD ["npm", "run", "dev"]
